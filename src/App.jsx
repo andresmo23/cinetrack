@@ -37,18 +37,22 @@ function App() {
   const movieDelete = (idMovie) =>
     setMovies((prev) => prev.filter((movie) => movie.id !== idMovie));
 
-  // lista de generos disponibles para el <select>
-  const uniqueGenres = [...new Set(movies.map((movie) => movie.genre))];
-
   // crear subconjunto del estado principal
   const filteredMovies = movies.filter((movie) => {
-    const matchGenre = filters.genre === "todas" || movie.genre === filters.genre;
+    const matchGenre =
+      filters.genre === "todas" || normalize(movie.genre) === normalize(filters.genre);
 
     const matchFavorite =
       filters.isFavorite === "todas" || movie.isFavorite === (filters.isFavorite === "si");
 
     return matchGenre && matchFavorite;
   });
+
+  // funcion utilitaria para normalizar el select de manera mas robusta
+  const normalize = (str) => str.trim().toLowerCase().normalize("NFC");
+
+  // lista de generos disponibles para el <select>
+  const uniqueGenres = [...new Set(movies.map((movie) => normalize(movie.genre)))];
 
   // actualizar el estado de filters
   const handleFiltersChange = (type, value) => {
