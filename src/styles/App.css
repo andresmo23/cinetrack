@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap");
+
+:root {
+  --backgorund-primary: #121212;
+  --background-secondary: #1e1e1e; /* tarjetas, formularios y modales*/
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0; /* subtitulos, etiquetas o detalles*/
+  --color-primary: #ff6f00; /* titulos, botones, iconos*/
+  --color-secondary: #f6fa00; /* destacar favoritos o mensajes*/
+  --borders: #424242;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  background-color: var(--backgorund-primary);
+  color: var(--text-primary);
+}
+
+.cine-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cine-main h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.cine-main h1 span {
+  color: var(--color-secondary);
+}
+
+.cine-render-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ******************* Estilos: Componente CineFilters *******************/
+.container-filters {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* ******************* Estilos: Iconos para los renderizados *******************/
+.star {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+}
+.star.active {
+  color: gold;
+}
+.star.inactive {
+  color: #ccc;
+}
+
+.icon-fav {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-left: 4px;
+  color: red;
+}
+.icon-fav.inactive {
+  color: #ccc;
+}
+
+/* ******************* Estilos: Componente Card ******************* */
+.container-cards-movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card-movie {
+  min-height: 320px;
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  box-shadow: 0 0 6px var(--borders);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.card-movie:hover {
+  transform: scale(1.02);
+}
+
+.container-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.card-movie .synopsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.container-buttons-card {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btn-edit {
+  background-color: #3901bd;
+  transition: background 0.4s ease;
+}
+.btn-edit:hover {
+  background-color: #2e0196;
+}
+
+.btn-delete {
+  background-color: #cf0000;
+  transition: background 0.4s ease;
+}
+.btn-delete:hover {
+  background-color: #8f0101;
+}
+
+@media (min-width: 768px) {
+  .cine-main {
+    width: 85%;
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid var(--borders);
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cine-render-filters {
+    width: 100%;
+  }
+
+  .container-cards-movies {
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
